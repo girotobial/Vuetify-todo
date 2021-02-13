@@ -91,5 +91,16 @@ export default new Vuex.Store({
       commit("updateTaskDueDate", payload);
       commit("showSnackBar", "Due Date updated!");
     }
+  },
+  getters: {
+    tasksFiltered(state) {
+      if (!state.search) {
+        return state.tasks;
+      } else {
+        return state.tasks.filter(task =>
+          task.title.toLowerCase().includes(state.search.toLowerCase())
+        );
+      }
+    }
   }
 });

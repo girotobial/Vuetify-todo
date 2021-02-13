@@ -58,6 +58,7 @@ export default Vue.extend({
           title: "Edit",
           icon: "mdi-pencil",
           click() {
+            // @ts-ignore
             this.dialogs.edit = true;
           }
         },
@@ -65,6 +66,7 @@ export default Vue.extend({
           title: "Due Date",
           icon: "mdi-calendar",
           click() {
+            // @ts-ignore
             this.dialogs.dueDate = true;
           }
         },
@@ -72,6 +74,7 @@ export default Vue.extend({
           title: "Delete",
           icon: "mdi-delete",
           click() {
+            // @ts-ignore
             this.dialogs.delete = true;
           }
         },
@@ -79,6 +82,7 @@ export default Vue.extend({
           title: "Sort",
           icon: "mdi-drag-horizontal-variant",
           click() {
+            // @ts-ignore
             this.$store.commit("toggleSorting");
           }
         }

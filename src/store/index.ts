@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+// @ts-ignore
 import Localbase from "localbase";
 
 const db = new Localbase("db");
@@ -11,7 +12,7 @@ export default new Vuex.Store({
   state: {
     search: "",
     appTitle: process.env.VUE_APP_TITLE,
-    tasks: [],
+    tasks: Array<{id: number, title: string, done: boolean, dueDate: string}>(),
     snackbar: {
       show: false,
       text: ""
@@ -125,6 +126,7 @@ export default new Vuex.Store({
     getTasks({ commit }) {
       db.collection("tasks")
         .get()
+        // @ts-ignore
         .then(tasks => {
           commit("setTasks", tasks);
         });

@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app>
+    <v-navigation-drawer v-model="drawer" app :mobile-breakpoint="768">
       <v-img
         class="pa-4 pt-7"
         height="170"
@@ -10,7 +10,9 @@
         <v-avatar size="70" class="mb-2">
           <img src="gravitar.jpg" alt="Alex Robinson" />
         </v-avatar>
-        <div class="white--text text-subtitle-1 font-weight-bold">Alex Robinson</div>
+        <div class="white--text text-subtitle-1 font-weight-bold">
+          Alex Robinson
+        </div>
         <div class="white--text text-subtitle-2">arobinson</div>
       </v-img>
 
@@ -42,7 +44,7 @@
         ></v-img>
       </template>
 
-      <v-container class="pa-0">
+      <v-container class="header-container pa-0">
         <v-row class="pt-1">
           <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
           <v-spacer></v-spacer>
@@ -86,4 +88,7 @@ export default Vue.extend({
 });
 </script>
 
-LiveDateTime
+<style lang="sass" scoped>
+.header-container
+  max-width: none !important
+</style>

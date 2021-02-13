@@ -94,6 +94,17 @@ export default new Vuex.Store({
           commit("showSnackBar", "Task added!");
         });
     },
+    doneTask({ state, commit }, id: number) {
+      const task = state.tasks.filter(task => task.id === id)[0];
+      db.collection("tasks")
+        .doc({ id: id })
+        .update({
+          done: !task.done
+        })
+        .then(() => {
+          commit("doneTask", id);
+        });
+    },
     deleteTask({ commit }, id: number) {
       commit("deleteTask", id);
       commit("showSnackBar", "Task deleted!");
@@ -105,6 +116,13 @@ export default new Vuex.Store({
     updateTaskDueDate({ commit }, payload) {
       commit("updateTaskDueDate", payload);
       commit("showSnackBar", "Due Date updated!");
+    },
+    getTasks({ commit }) {
+      db.collection("tasks")
+        .get()
+        .then(tasks => {
+          commit("setTasks", tasks);
+        });
     }
   },
   getters: {

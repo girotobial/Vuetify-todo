@@ -40,17 +40,9 @@
       <v-app-bar-title>Vuetify Todo</v-app-bar-title>
 
       <v-spacer></v-spacer>
-
+      <search />
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -64,6 +56,7 @@
 <script>
 import Vue from "vue";
 import SnackBar from "@/components/Global/SnackBar.vue";
+import Search from "@/components/Tools/Search.vue";
 
 export default Vue.extend({
   data: () => ({
@@ -74,7 +67,8 @@ export default Vue.extend({
     ]
   }),
   components: {
-    snackbar: SnackBar
+    snackbar: SnackBar,
+    search: Search
   }
 });
 </script>

@@ -18,7 +18,7 @@
         <v-list-item-action v-if="task.dueDate">
           <v-list-item-action-text>
             <v-icon small>mdi-calendar</v-icon>
-            {{ task.dueDate }}
+            {{ task.dueDate | niceDate }}
           </v-list-item-action-text>
         </v-list-item-action>
         <v-list-item-action>
@@ -33,9 +33,15 @@
 <script lang="ts">
 import Vue from "vue";
 import TaskMenu from "@/components/Todo/TaskMenu.vue";
+import { format } from "date-fns";
 
 export default Vue.extend({
   props: ["task"],
+  filters: {
+    niceDate(value: string): string {
+      return format(new Date(value), "MMM d");
+    }
+  },
   components: {
     "task-menu": TaskMenu
   }

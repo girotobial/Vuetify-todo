@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from "vue";
 import DialogDelete from "@/components/Todo/Dialogs/DialogDelete.vue";
 import TaskMenu from "@/components/Todo/TaskMenu.vue";

@@ -7,7 +7,7 @@
     </template>
 
     <v-list>
-      <v-list-item v-for="(item, i) in items" :key="i">
+      <v-list-item v-for="(item, index) in items" :key="index" @click="handleClick(index)">
         <v-list-item-icon>
           <v-icon v-text="item.icon"></v-icon>
         </v-list-item-icon>
@@ -17,25 +17,35 @@
   </v-menu>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
-  data: () => ({
-    items: [
-      {
-        title: "Edit",
-        icon: "mdi-pencil"
-      },
-      {
-        title: "Due Date",
-        icon: "mdi-calendar"
-      },
-      {
-        title: "Delete",
-        icon: "mdi-delete"
-      }
-    ]
-  })
+  data() {
+    return {
+      items: [
+        {
+          title: "Edit",
+          icon: "mdi-pencil",
+          click() {}
+        },
+        {
+          title: "Due Date",
+          icon: "mdi-calendar",
+          click() {}
+        },
+        {
+          title: "Delete",
+          icon: "mdi-delete",
+          click() {}
+        }
+      ]
+    };
+  },
+  methods: {
+    handleClick(index: number) {
+      this.items[index].click();
+    }
+  }
 });
 </script>
 

@@ -9,9 +9,7 @@ import Task from "@/components/Todo/Task.vue";
 
 export default {
   components: {
-    "task": Task
+    task: Task
   }
 };
 </script>
-
-<style></style>

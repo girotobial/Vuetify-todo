@@ -2,14 +2,16 @@
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" app>
       <v-img
-        class="pa-4"
+        class="pa-4 pt-7"
         height="170"
         gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
         src="dunlop-masthead.jpg"
       >
-        <v-avatar size="70">
+        <v-avatar size="70" class="mb-2">
           <img src="gravitar.jpg" alt="Alex Robinson" />
         </v-avatar>
+        <div class="white--text text-subtitle-1 font-weight-bold">Alex Robinson</div>
+        <div class="white--text text-subtitle-2">arobinson</div>
       </v-img>
 
       <v-list dense nav>
@@ -70,7 +72,7 @@ import LiveDateTime from "@/components/Tools/LiveDateTime.vue";
 
 export default Vue.extend({
   data: () => ({
-    drawer: true,
+    drawer: null,
     items: [
       { title: "Todo", icon: "mdi-format-list-checks", to: "/" },
       { title: "About", icon: "mdi-help-box", to: "/about" }

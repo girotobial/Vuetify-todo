@@ -1,11 +1,27 @@
 <template>
   <div class="text-subtitle-1 ml-4">
-    October 20, 14:40
+    {{ date }}
   </div>
 </template>
 
-<script>
-export default {};
+<script lang="ts">
+import Vue from "vue";
+import { format } from "date-fns";
+export default Vue.extend({
+  data() {
+    return {
+      date: ""
+    };
+  },
+  methods: {
+    getDate() {
+      this.date = format(new Date(), "MMMM d");
+    }
+  },
+  mounted() {
+    this.getDate();
+  }
+});
 </script>
 
 <style></style>

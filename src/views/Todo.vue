@@ -1,5 +1,16 @@
 <template>
   <div class="home">
+    <v-text-field
+      v-model="newTaskTitle"
+      @click:append="addTask"
+      @keyup.enter="addTask"
+      class="pa-3"
+      outlined
+      label="Add Task"
+      append-icon="mdi-plus"
+      hide-details
+      clearable
+    ></v-text-field>
     <v-list class="pt-0" flat>
       <div v-for="task in tasks" :key="task.id">
         <v-list-item
@@ -31,11 +42,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-
-@Component({
+export default {
   data() {
     return {
+      newTaskTitle: "",
       tasks: [
         {
           id: 0,
@@ -56,6 +66,15 @@ import { Component, Vue } from "vue-property-decorator";
     };
   },
   methods: {
+    addTask() {
+      const newTask = {
+        id: Date.now(),
+        title: this.newTaskTitle,
+        done: false
+      };
+      this.tasks.push(newTask);
+      this.newTaskTitle = "";
+    },
     doneTask(id: number) {
       const task = this.tasks.filter(task => task.id === id)[0];
       task.done = !task.done;
@@ -64,6 +83,5 @@ import { Component, Vue } from "vue-property-decorator";
       this.tasks = this.tasks.filter(task => task.id !== id);
     }
   }
-})
-export default class Home extends Vue {}
+};
 </script>

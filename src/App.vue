@@ -5,7 +5,7 @@
         class="pa-4 pt-7"
         height="170"
         gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
-        src="dunlop-masthead.jpg"
+        src="clouds.jpg"
       >
         <v-avatar size="70" class="mb-2">
           <img src="gravitar.jpg" alt="Alex Robinson" />
@@ -35,7 +35,7 @@
       dark
       prominent
       height="170"
-      src="dunlop-masthead.jpg"
+      src="clouds.jpg"
     >
       <template v-slot:img="{ props }">
         <v-img

@@ -30,7 +30,8 @@ export default new Vuex.Store({
     snackbar: {
       show: false,
       text: ""
-    }
+    },
+    sorting: false
   },
   mutations: {
     setSearch(state, value: string) {
@@ -73,6 +74,9 @@ export default new Vuex.Store({
     },
     hideSnackBar(state) {
       state.snackbar.show = false;
+    },
+    toggleSorting(state) {
+      state.sorting = !state.sorting;
     }
   },
   actions: {

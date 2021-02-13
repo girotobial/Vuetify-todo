@@ -25,6 +25,11 @@
       :task="task"
       @close="dialogs.delete = false"
     />
+    <dialog-due-date
+      v-if="dialogs.dueDate"
+      :task="task"
+      @close="dialogs.dueDate = false"
+    />
     <dialog-edit
       v-if="dialogs.edit"
       :task="task"
@@ -37,6 +42,7 @@
 import Vue from "vue";
 import DialogDelete from "@/components/Todo/Dialogs/DialogDelete.vue";
 import DialogEdit from "@/components/Todo/Dialogs/DialogEdit.vue";
+import DialogDueDate from "@/components/Todo/Dialogs/DialogDueDate.vue";
 
 export default Vue.extend({
   props: ["task"],
@@ -44,7 +50,8 @@ export default Vue.extend({
     return {
       dialogs: {
         delete: false,
-        edit: false
+        edit: false,
+        dueDate: true
       },
       items: [
         {
@@ -78,6 +85,7 @@ export default Vue.extend({
   },
   components: {
     "dialog-delete": DialogDelete,
+    "dialog-due-date": DialogDueDate,
     "dialog-edit": DialogEdit
   }
 });

@@ -17,6 +17,11 @@
                 >{{ task.title }}</v-list-item-title
               >
             </v-list-item-content>
+            <v-list-item-action>
+              <v-btn @click.stop="deleteTask(task.id)" icon>
+                <v-icon color="primary lighten-1">mdi-delete</v-icon>
+              </v-btn>
+            </v-list-item-action>
           </template>
         </v-list-item>
         <v-divider></v-divider>
@@ -33,17 +38,17 @@ import { Component, Vue } from "vue-property-decorator";
     return {
       tasks: [
         {
-          id: 1,
+          id: 0,
           title: "Wake up",
           done: false
         },
         {
-          id: 2,
+          id: 1,
           title: "Get bananas",
           done: false
         },
         {
-          id: 3,
+          id: 2,
           title: "Eat bananas",
           done: false
         }
@@ -54,6 +59,9 @@ import { Component, Vue } from "vue-property-decorator";
     doneTask(id: number) {
       const task = this.tasks.filter(task => task.id === id)[0];
       task.done = !task.done;
+    },
+    deleteTask(id: number) {
+      this.tasks = this.tasks.filter(task => task.id !== id);
     }
   }
 })

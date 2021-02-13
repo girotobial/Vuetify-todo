@@ -11,8 +11,8 @@
       hide-details
       clearable
     ></v-text-field>
-    <v-list class="pt-0" flat v-if="tasks.length">
-      <div v-for="task in tasks" :key="task.id">
+    <v-list class="pt-0" flat v-if="$store.state.tasks.length">
+      <div v-for="task in $store.state.tasks" :key="task.id">
         <v-list-item
           @click="doneTask(task.id)"
           :class="{ 'blue lighten-5': task.done }"
@@ -51,24 +51,7 @@
 export default {
   data() {
     return {
-      newTaskTitle: "",
-      tasks: [
-        {
-          id: 0,
-          title: "Wake up",
-          done: false
-        },
-        {
-          id: 1,
-          title: "Get bananas",
-          done: false
-        },
-        {
-          id: 2,
-          title: "Eat bananas",
-          done: false
-        }
-      ]
+      newTaskTitle: ""
     };
   },
   methods: {

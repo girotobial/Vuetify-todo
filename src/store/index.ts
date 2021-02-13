@@ -24,7 +24,7 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-    addTask(state, newTaskTitle) {
+    addTask(state, newTaskTitle: string) {
       const newTask = {
         id: Date.now(),
         title: newTaskTitle,
@@ -32,9 +32,12 @@ export default new Vuex.Store({
       };
       state.tasks.push(newTask);
     },
-    doneTask(state, id) {
+    doneTask(state, id: number) {
       const task = state.tasks.filter(task => task.id === id)[0];
       task.done = !task.done;
+    },
+    deleteTask(state, id: number) {
+      state.tasks = state.tasks.filter(task => task.id !== id);
     }
   },
   actions: {}

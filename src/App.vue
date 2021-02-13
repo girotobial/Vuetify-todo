@@ -27,7 +27,14 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app color="primary" dark prominent src="dunlop-masthead.jpg">
+    <v-app-bar
+      app
+      color="primary"
+      dark
+      prominent
+      height="170"
+      src="dunlop-masthead.jpg"
+    >
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
@@ -42,7 +49,10 @@
           <search />
         </v-row>
         <v-row>
-          <v-toolbar-title class="ml-4">Vuetify Todo</v-toolbar-title>
+          <v-toolbar-title class="text-h4 ml-4">Vuetify Todo</v-toolbar-title>
+        </v-row>
+        <v-row>
+          <live-date-time />
         </v-row>
       </v-container>
     </v-app-bar>
@@ -58,6 +68,7 @@
 import Vue from "vue";
 import SnackBar from "@/components/Global/SnackBar.vue";
 import Search from "@/components/Tools/Search.vue";
+import LiveDateTime from "@/components/Tools/LiveDateTime.vue";
 
 export default Vue.extend({
   data: () => ({
@@ -69,7 +80,10 @@ export default Vue.extend({
   }),
   components: {
     snackbar: SnackBar,
-    search: Search
+    search: Search,
+    "live-date-time": LiveDateTime
   }
 });
 </script>
+
+LiveDateTime

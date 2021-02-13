@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import Localbase from "localbase";
 
 const db = new Localbase("db");
+db.config.debug = false;
 
 Vue.use(Vuex);
 
@@ -10,26 +11,7 @@ export default new Vuex.Store({
   state: {
     search: "",
     appTitle: process.env.VUE_APP_TITLE,
-    tasks: [
-      // {
-      //   id: 0,
-      //   title: "Wake up",
-      //   done: false,
-      //   dueDate: "2020-10-16"
-      // },
-      // {
-      //   id: 1,
-      //   title: "Get bananas",
-      //   done: false,
-      //   dueDate: "2020-10-17"
-      // },
-      // {
-      //   id: 2,
-      //   title: "Eat bananas",
-      //   done: false,
-      //   dueDate: null
-      // }
-    ],
+    tasks: [],
     snackbar: {
       show: false,
       text: ""
@@ -135,6 +117,10 @@ export default new Vuex.Store({
           commit("updateTaskDueDate", payload);
           commit("showSnackBar", "Due Date updated!");
         });
+    },
+    setTasks({ commit }, tasks) {
+      db.collection("tasks").set(tasks);
+      commit("setTasks", tasks);
     },
     getTasks({ commit }) {
       db.collection("tasks")

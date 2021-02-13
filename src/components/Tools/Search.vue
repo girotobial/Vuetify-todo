@@ -1,9 +1,10 @@
 <template>
   <v-text-field
+    v-model="search"
     @focus="searchClosed = false"
     @blur="searchClosed = true"
     class="expanding-search mt-1"
-    :class="{ closed: searchClosed }"
+    :class="{ closed: searchClosed && !search }"
     placeholder="Search"
     filled
     dense
@@ -17,7 +18,8 @@ import Vue from "vue";
 export default Vue.extend({
   data() {
     return {
-      searchClosed: true
+      searchClosed: true,
+      search: null
     };
   }
 });
@@ -27,6 +29,7 @@ export default Vue.extend({
 .expanding-search
   transition: max-width 0.3s
   .v-input__slot
+    cursor: pointer !important
     &:before, &:after
       border-color: transparent !important
   &.closed

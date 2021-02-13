@@ -106,8 +106,13 @@ export default new Vuex.Store({
         });
     },
     deleteTask({ commit }, id: number) {
-      commit("deleteTask", id);
-      commit("showSnackBar", "Task deleted!");
+      db.collection("tasks")
+        .doc({ id: id })
+        .delete()
+        .then(() => {
+          commit("deleteTask", id);
+          commit("showSnackBar", "Task deleted!");
+        });
     },
     updateTaskTitle({ commit }, payload) {
       db.collection("tasks")

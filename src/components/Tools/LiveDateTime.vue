@@ -15,7 +15,8 @@ export default Vue.extend({
   },
   methods: {
     getDate() {
-      this.date = format(new Date(), "MMMM d");
+      this.date = format(new Date(), "MMMM d, H:mm:ss");
+      setTimeout(this.getDate, 1000);
     }
   },
   mounted() {

@@ -13,7 +13,7 @@
         <v-btn text @click="$emit('close')">
           Cancel
         </v-btn>
-        <v-btn color="red" text @click="saveTask">
+        <v-btn color="red" text @click="saveTask" :disabled="taskTitleInvalid">
           Save
         </v-btn>
       </v-card-actions>
@@ -36,12 +36,19 @@ export default Vue.extend({
   },
   methods: {
     saveTask() {
-      const payload = {
-        id: this.task.id,
-        title: this.taskTitle
-      };
-      this.$store.commit("updateTaskTitle", payload);
-      this.$emit("close");
+      if (!this.taskTitleInvalid) {
+        const payload = {
+          id: this.task.id,
+          title: this.taskTitle
+        };
+        this.$store.commit("updateTaskTitle", payload);
+        this.$emit("close");
+      }
+    }
+  },
+  computed: {
+    taskTitleInvalid() {
+      return !this.taskTitle || this.taskTitle === this.task.title;
     }
   }
 });

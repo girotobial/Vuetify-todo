@@ -41,7 +41,15 @@ export default new Vuex.Store({
     },
     deleteTask(state, id: number) {
       state.tasks = state.tasks.filter(task => task.id !== id);
+    },
+    showSnackBar(state) {
+      state.snackbar.show = true;
     }
   },
-  actions: {}
+  actions: {
+    addTask({ commit }, newTaskTitle) {
+      commit("addTask", newTaskTitle);
+      commit("showSnackBar");
+    }
+  }
 });

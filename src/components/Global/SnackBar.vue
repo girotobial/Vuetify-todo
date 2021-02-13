@@ -14,7 +14,7 @@
 import Vue from "vue";
 export default Vue.extend({
   data: () => ({
-    text: "Hello, I'm a snackbar"
+    text: "Task added"
   })
 });
 </script>

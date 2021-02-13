@@ -12,7 +12,12 @@ export default new Vuex.Store({
   state: {
     search: "",
     appTitle: process.env.VUE_APP_TITLE,
-    tasks: Array<{id: number, title: string, done: boolean, dueDate: string}>(),
+    tasks: Array<{
+      id: number;
+      title: string;
+      done: boolean;
+      dueDate: string;
+    }>(),
     snackbar: {
       show: false,
       text: ""

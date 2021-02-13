@@ -23,11 +23,17 @@
       </template>
     </v-list-item>
     <v-divider></v-divider>
+    <dialog-delete />
   </div>
 </template>
 
 <script>
+import DialogDelete from "@/components/Todo/Dialogs/DialogDelete.vue";
+
 export default {
-  props: ["task"]
+  props: ["task"],
+  components: {
+    "dialog-delete": DialogDelete
+  }
 };
 </script>

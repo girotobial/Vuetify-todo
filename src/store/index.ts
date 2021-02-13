@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-// @ts-ignore
+// @ts-expect-error has no type annotations
 import Localbase from "localbase";
 
 const db = new Localbase("db");
@@ -126,7 +126,7 @@ export default new Vuex.Store({
     getTasks({ commit }) {
       db.collection("tasks")
         .get()
-        // @ts-ignore
+        // @ts-expect-error no idea why this errors
         .then(tasks => {
           commit("setTasks", tasks);
         });

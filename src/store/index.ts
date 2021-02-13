@@ -1,5 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import Localbase from "localbase";
+
+const db = new Localbase("db");
 
 Vue.use(Vuex);
 
@@ -8,24 +11,24 @@ export default new Vuex.Store({
     search: "",
     appTitle: process.env.VUE_APP_TITLE,
     tasks: [
-      {
-        id: 0,
-        title: "Wake up",
-        done: false,
-        dueDate: "2020-10-16"
-      },
-      {
-        id: 1,
-        title: "Get bananas",
-        done: false,
-        dueDate: "2020-10-17"
-      },
-      {
-        id: 2,
-        title: "Eat bananas",
-        done: false,
-        dueDate: null
-      }
+      // {
+      //   id: 0,
+      //   title: "Wake up",
+      //   done: false,
+      //   dueDate: "2020-10-16"
+      // },
+      // {
+      //   id: 1,
+      //   title: "Get bananas",
+      //   done: false,
+      //   dueDate: "2020-10-17"
+      // },
+      // {
+      //   id: 2,
+      //   title: "Eat bananas",
+      //   done: false,
+      //   dueDate: null
+      // }
     ],
     snackbar: {
       show: false,
@@ -37,13 +40,7 @@ export default new Vuex.Store({
     setSearch(state, value: string) {
       state.search = value;
     },
-    addTask(state, newTaskTitle: string) {
-      const newTask = {
-        id: Date.now(),
-        title: newTaskTitle,
-        done: false,
-        dueDate: null
-      };
+    addTask(state, newTask) {
       state.tasks.push(newTask);
     },
     doneTask(state, id: number) {
@@ -84,8 +81,18 @@ export default new Vuex.Store({
   },
   actions: {
     addTask({ commit }, newTaskTitle: string) {
-      commit("addTask", newTaskTitle);
-      commit("showSnackBar", "Task added!");
+      const newTask = {
+        id: Date.now(),
+        title: newTaskTitle,
+        done: false,
+        dueDate: null
+      };
+      db.collection("tasks")
+        .add(newTask)
+        .then(() => {
+          commit("addTask", newTask);
+          commit("showSnackBar", "Task added!");
+        });
     },
     deleteTask({ commit }, id: number) {
       commit("deleteTask", id);

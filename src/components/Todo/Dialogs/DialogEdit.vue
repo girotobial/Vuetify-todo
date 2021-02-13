@@ -6,14 +6,14 @@
       </v-card-title>
       <v-card-text>
         Edit the title of this task?
-        <v-text-field v-model="taskTitle" />
+        <v-text-field v-model="taskTitle" @keyup.enter="saveTask" />
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn text @click="$emit('close')">
           Cancel
         </v-btn>
-        <v-btn color="red" text @click="$store.dispatch('deleteTask', task.id)">
+        <v-btn color="red" text @click="saveTask">
           Save
         </v-btn>
       </v-card-actions>
@@ -33,6 +33,16 @@ export default Vue.extend({
   },
   mounted() {
     this.taskTitle = this.task.title;
+  },
+  methods: {
+    saveTask() {
+      const payload = {
+        id: this.task.id,
+        title: this.taskTitle
+      };
+      this.$store.commit("updateTaskTitle", payload);
+      this.$emit("close");
+    }
   }
 });
 </script>

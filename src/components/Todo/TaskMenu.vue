@@ -25,26 +25,33 @@
       :task="task"
       @close="dialogs.delete = false"
     />
+    <dialog-edit
+      v-if="dialogs.edit"
+      :task="task"
+      @close="dialogs.edit = false"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import DialogDelete from "@/components/Todo/Dialogs/DialogDelete.vue";
+import DialogEdit from "@/components/Todo/Dialogs/DialogEdit.vue";
 
 export default Vue.extend({
   props: ["task"],
   data() {
     return {
       dialogs: {
-        delete: false
+        delete: false,
+        edit: false
       },
       items: [
         {
           title: "Edit",
           icon: "mdi-pencil",
           click() {
-            console.log("edit");
+            this.dialogs.edit = true;
           }
         },
         {
@@ -58,7 +65,7 @@ export default Vue.extend({
           title: "Delete",
           icon: "mdi-delete",
           click() {
-            this.dialogs.delete=true;
+            this.dialogs.delete = true;
           }
         }
       ]
@@ -70,7 +77,8 @@ export default Vue.extend({
     }
   },
   components: {
-    "dialog-delete": DialogDelete
+    "dialog-delete": DialogDelete,
+    "dialog-edit": DialogEdit
   }
 });
 </script>
